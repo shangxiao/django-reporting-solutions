@@ -21,6 +21,15 @@
         </tr>
       </thead>
       <tbody>
+        {% regroup sales by store as store_list %}
+        {% for store in store_list %}
+          <tr>
+            <td>{{ store.grouper }}</td>
+            {% for sales in store.list %}
+              <td>${{ sales.total | intcomma }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </body>
